@@ -1,0 +1,1482 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitar Orçamento - Ailton Snart</title>
+  <link rel="stylesheet" href="stylehome.css">
+  <style>
+    :root {
+      --accent: #ff0040;
+      --accent-soft: rgba(255, 0, 64, 0.14);
+      --bg-panel: rgba(255, 255, 255, 0.05);
+      --bg-field: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #fff;
+      --muted: #b6b6b6;
+      --success: #00c26e;
+      --warning: #ffb347;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 120px 18px 42px;
+      color: var(--text);
+      background: #000;
+      background-image:
+        linear-gradient(#ffffff10 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridMove 20s linear infinite;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body.estimate-sheet-open {
+      overflow: hidden;
+    }
+
+    @keyframes gridMove {
+      from { background-position: 0 0; }
+      to { background-position: 0 100px; }
+    }
+
+    .quote-container {
+      position: relative;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.82);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 22px 44px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(18px);
+    }
+
+    .quote-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .quote-close:hover {
+      transform: rotate(90deg) scale(1.04);
+      background: rgba(255, 0, 64, 0.18);
+    }
+
+    .quote-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .quote-header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      background: linear-gradient(135deg, #ff0040, #ff5f8f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .quote-header p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .quote-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 26px;
+      align-items: start;
+      overflow: visible;
+    }
+
+    .quote-main {
+      min-width: 0;
+    }
+
+    .quote-sidebar {
+      position: sticky;
+      top: 116px;
+      align-self: start;
+      min-width: 0;
+    }
+
+    .estimate-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .estimate-card {
+      position: relative;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background:
+        radial-gradient(circle at top right, rgba(255, 0, 64, 0.18), transparent 42%),
+        radial-gradient(circle at bottom left, rgba(255, 95, 143, 0.12), transparent 38%),
+        rgba(8, 8, 8, 0.9);
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(18px);
+      max-height: calc(100vh - 138px);
+      overflow: auto;
+    }
+
+    .estimate-kicker {
+      margin: 0 0 10px;
+      color: #ff8eac;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .estimate-title {
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+
+    .estimate-type {
+      margin: 10px 0 0;
+      color: #ffd7e4;
+      font-size: 0.98rem;
+      line-height: 1.5;
+    }
+
+    .estimate-card .price-box {
+      margin-top: 18px;
+      border-color: rgba(255, 0, 64, 0.3);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .estimate-card .price-breakdown {
+      margin-top: 10px;
+      white-space: normal;
+      color: #d7d7d7;
+    }
+
+    .estimate-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .estimate-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: #f2f2f2;
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+
+    .estimate-section {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .estimate-section h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .estimate-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .estimate-item,
+    .estimate-empty {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .estimate-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .estimate-item.base {
+      border-color: rgba(255, 0, 64, 0.28);
+      background: linear-gradient(180deg, rgba(255, 0, 64, 0.14), rgba(255, 255, 255, 0.04));
+    }
+
+    .estimate-item.warning {
+      border-color: rgba(255, 179, 71, 0.32);
+      background: rgba(255, 179, 71, 0.08);
+    }
+
+    .estimate-item-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .estimate-item-label {
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .estimate-item-meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .estimate-item-price {
+      color: #ff7a9d;
+      font-weight: 700;
+      white-space: nowrap;
+      line-height: 1.35;
+    }
+
+    .estimate-empty {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .estimate-footnote {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #d0d0d0;
+      line-height: 1.65;
+    }
+
+    .estimate-mobile-dock,
+    .estimate-mobile-backdrop,
+    .estimate-mobile-close {
+      display: none;
+    }
+
+    .form-section {
+      margin-bottom: 24px;
+      padding: 24px;
+      background: var(--bg-panel);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 16px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .form-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(255, 0, 64, 0.12);
+    }
+
+    .form-section h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+    }
+
+    .form-section p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      margin-top: 25px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-group > label,
+    .form-group legend {
+      display: block;
+      margin-bottom: 10px;
+      padding: 0;
+      border: 0;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .label-oque-espera {
+      margin-top: 25px;
+    }
+
+    .label-links-referencia {
+      margin-top: 25px;
+    }
+
+    .group-reset {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      min-width: 0;
+      margin-top: 25px;
+    }
+
+    .text-field {
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--bg-field);
+      color: #fff;
+      font: inherit;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    textarea.text-field {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .text-field:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255, 0, 64, 0.16);
+    }
+
+    .text-field::placeholder {
+      color: #8f8f8f;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .choice {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .choice:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 0, 64, 0.5);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .choice.active {
+      border-color: rgba(255, 0, 64, 0.85);
+      background: linear-gradient(180deg, rgba(255, 0, 64, 0.12), rgba(255, 255, 255, 0.05));
+      box-shadow: 0 10px 22px rgba(255, 0, 64, 0.14);
+    }
+
+    .choice input[type="checkbox"],
+    .choice input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      margin: 4px 0 0;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+    }
+
+    .choice-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .choice-title {
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.35;
+    }
+
+    .choice small {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .conditional {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .conditional.active {
+      display: block;
+    }
+
+    .status-note,
+    .price-box,
+    .feedback,
+    .summary,
+    .extra-note {
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .status-note,
+    .price-help {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .price-box {
+      border-color: rgba(255, 0, 64, 0.22);
+      background: linear-gradient(180deg, rgba(255, 0, 64, 0.12), rgba(255, 255, 255, 0.04));
+    }
+
+    .price-result {
+      margin: 0 0 10px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: #ff6b93;
+    }
+
+    .price-breakdown {
+      margin-top: 12px;
+      color: #dedede;
+      line-height: 1.7;
+      white-space: pre-line;
+      font-size: 0.95rem;
+    }
+
+    .btn-submit,
+    .btn-secondary,
+    .btn-whatsapp {
+      border: 0;
+      border-radius: 12px;
+      padding: 16px 18px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 28px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #ff0040, #ff4081);
+      box-shadow: 0 8px 24px rgba(255, 0, 64, 0.36);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .btn-whatsapp {
+      background: rgba(0, 194, 110, 0.14);
+      color: #eafff5;
+      border: 1px solid rgba(0, 194, 110, 0.38);
+      box-shadow: 0 8px 22px rgba(0, 194, 110, 0.14);
+    }
+
+    .btn-submit:hover,
+    .btn-secondary:hover,
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:disabled,
+    .btn-secondary:disabled,
+    .btn-whatsapp:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .feedback {
+      display: none;
+      line-height: 1.65;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.success {
+      background: rgba(0, 194, 110, 0.11);
+      border-color: rgba(0, 194, 110, 0.45);
+      color: #dbffeb;
+    }
+
+    .feedback.error {
+      background: rgba(255, 179, 71, 0.12);
+      border-color: rgba(255, 179, 71, 0.45);
+      color: #ffe9c9;
+    }
+
+    .summary[hidden] {
+      display: none;
+    }
+
+    .summary h2 {
+      margin: 0 0 8px;
+      font-size: 1.4rem;
+    }
+
+    .summary p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .summary-output {
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.22);
+      color: #e5e5e5;
+      white-space: pre-line;
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .invalid {
+      border-color: rgba(255, 179, 71, 0.85) !important;
+      box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.14) !important;
+    }
+
+    .extra-note {
+      text-align: center;
+      color: #d8d8d8;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .extra-note strong {
+      color: #ff6b93;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 96px;
+        padding-inline: 14px;
+        padding-bottom: calc(118px + env(safe-area-inset-bottom));
+      }
+
+      .quote-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-container {
+        padding: 22px 18px 118px;
+      }
+
+      .quote-close {
+        top: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+      }
+
+      .choices {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .quote-sidebar {
+        position: static;
+        order: 0;
+      }
+
+      .estimate-mobile-dock {
+        appearance: none;
+        display: flex;
+        position: fixed;
+        left: 14px;
+        right: 14px;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        z-index: 30;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 20px;
+        background:
+          radial-gradient(circle at top right, rgba(255, 0, 64, 0.18), transparent 52%),
+          rgba(10, 10, 10, 0.94);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
+        backdrop-filter: blur(18px);
+        text-align: left;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        transition: transform 0.28s ease, opacity 0.28s ease;
+      }
+
+      .estimate-mobile-dock-copy,
+      .estimate-mobile-dock-side {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .estimate-mobile-dock-kicker {
+        color: #ff9bb5;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .estimate-mobile-dock-value {
+        margin-top: 4px;
+        font-size: 1.02rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: #fff;
+      }
+
+      .estimate-mobile-dock-side {
+        align-items: flex-end;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .estimate-mobile-dock-type {
+        max-width: 128px;
+        color: #ffd6e2;
+        font-size: 0.82rem;
+        line-height: 1.25;
+      }
+
+      .estimate-mobile-dock-action {
+        margin-top: 6px;
+        color: #ff7a9d;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .estimate-mobile-backdrop {
+        appearance: none;
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 32;
+        border: 0;
+        padding: 0;
+        background: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.24s ease;
+      }
+
+      .estimate-card {
+        position: fixed;
+        left: 14px;
+        right: 14px;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        z-index: 34;
+        max-height: min(72vh, 640px);
+        margin: 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(calc(100% + 24px));
+        transition: transform 0.28s ease, opacity 0.28s ease;
+      }
+
+      .estimate-mobile-close {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 10px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        font-size: 0.82rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .estimate-title {
+        font-size: 1.2rem;
+      }
+
+      .estimate-item {
+        flex-direction: column;
+      }
+
+      .estimate-item-price {
+        white-space: normal;
+      }
+
+      .quote-sidebar[data-mobile-open="true"] .estimate-mobile-dock {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(18px);
+      }
+
+      .quote-sidebar[data-mobile-open="true"] .estimate-mobile-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .quote-sidebar[data-mobile-open="true"] .estimate-card {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1100px) {
+      .quote-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-sidebar {
+        position: static;
+        order: -1;
+      }
+
+      .estimate-card {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-container">
+    <button
+      type="button"
+      id="quote_close_button"
+      class="quote-close"
+      aria-label="Fechar orçamento"
+    >&times;</button>
+
+    <div class="quote-header">
+      <h1>Formulário de Orçamento</h1>
+      <p>Preencha os detalhes do projeto para gerar uma estimativa inicial e um resumo organizado do briefing.</p>
+    </div>
+
+    <div class="quote-layout">
+      <div class="quote-main">
+        <form id="orcamentoForm" novalidate>
+      <div class="form-section">
+        <h2>1. Seus dados</h2>
+        <p>Esses campos são obrigatórios para retorno e organização do atendimento.</p>
+
+        <div class="form-group">
+          <label for="nome">Nome *</label>
+          <input class="text-field" type="text" id="nome" name="nome" autocomplete="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail *</label>
+          <input class="text-field" type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp_contato">WhatsApp *</label>
+          <input
+            class="text-field"
+            type="tel"
+            id="whatsapp_contato"
+            name="whatsapp"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="(11) 99999-9999"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Empresa</label>
+          <input class="text-field" type="text" id="empresa" name="empresa" autocomplete="organization">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>2. Pacote Rápido</h2>
+        <p>Escolha primeiro se o orçamento será um pacote fechado ou um projeto sob medida.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>Como você quer começar esta proposta?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="modelo_proposta" value="sob_medida" checked>
+              <span class="choice-body">
+                <span class="choice-title">Projeto sob medida</span>
+                <small>Abre o formulário completo para montar o escopo personalizado.</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="modelo_proposta" value="site_simples">
+              <span class="choice-body">
+                <span class="choice-title">Site Simples</span>
+                <small>Landing Page simples com até 5 páginas, formulário de agendamento e botão de contato.</small>
+                <small>Faixa fixa: R$ 500 a R$ 1.000</small>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div id="detailed_form_sections">
+      <div class="form-section">
+        <h2>3. Objetivos do projeto</h2>
+        <p>Esse grupo foi ajustado para múltipla escolha porque um site pode ter mais de um objetivo ao mesmo tempo.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>Qual o objetivo do site? *</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="checkbox" name="objetivo[]" value="vender">
+              <span class="choice-body">
+                <span class="choice-title">Vender produtos ou serviços</span>
+                <small>Conversão direta, checkout ou captação comercial.</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="objetivo[]" value="captar">
+              <span class="choice-body">
+                <span class="choice-title">Captar clientes</span>
+                <small>Leads, contatos e agendamentos.</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="objetivo[]" value="portfolio">
+              <span class="choice-body">
+                <span class="choice-title">Portfólio</span>
+                <small>Cases, credibilidade e autoridade.</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="objetivo[]" value="institucional">
+              <span class="choice-body">
+                <span class="choice-title">Institucional</span>
+                <small>Presença online para marca ou empresa.</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" id="objetivo_outro_toggle" name="objetivo[]" value="outro">
+              <span class="choice-body">
+                <span class="choice-title">Outro objetivo</span>
+                <small>Use essa opção se existir um objetivo fora das opções acima.</small>
+              </span>
+            </label>
+          </div>
+
+          <div class="conditional" id="objetivo_outro_field">
+            <label for="objetivo_outro_text">Qual é o outro objetivo?</label>
+            <input
+              class="text-field"
+              type="text"
+              id="objetivo_outro_text"
+              name="objetivo_outro_text"
+              placeholder="Ex.: área restrita para parceiros"
+              disabled
+            >
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label class="label-oque-espera" for="acao_usuario">O que você espera que o usuário faça no site?</label>
+          <textarea
+            class="text-field"
+            id="acao_usuario"
+            name="acao_usuario"
+            rows="4"
+            placeholder="Ex.: comprar, pedir orçamento, entrar em contato, agendar atendimento..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>4. Público-alvo</h2>
+        <p>Essas respostas ajudam a definir o tom visual, a comunicação e a estratégia de conversão.</p>
+
+        <div class="form-group">
+          <label for="publico">Quem é seu público?</label>
+          <textarea
+            class="text-field"
+            id="publico"
+            name="publico"
+            rows="4"
+            placeholder="Ex.: empresários locais, pacientes de 25 a 50 anos, clientes premium..."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="idade">Faixa etária média</label>
+          <input class="text-field" type="text" id="idade" name="idade" placeholder="Ex.: 25 a 40 anos">
+        </div>
+
+        <div class="form-group">
+          <label for="nicho">Nicho ou segmento</label>
+          <input class="text-field" type="text" id="nicho" name="nicho" placeholder="Ex.: advocacia, estética, academia">
+        </div>
+
+        <div class="form-group">
+          <label for="regiao">Região de atuação</label>
+          <input class="text-field" type="text" id="regiao" name="regiao" placeholder="Ex.: São Paulo capital, Brasil inteiro">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>5. Tipo de site e estimativa</h2>
+        <p>Escolha a estrutura que mais se aproxima do seu projeto. A estimativa cruza essa base com páginas, conteúdo, integrações e prazo.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>Qual tipo de site você precisa?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="tipo_site" value="landing" checked>
+              <span class="choice-body">
+                <span class="choice-title">Landing Page</span>
+                <small>Página única ou enxuta, focada em campanha, captação ou conversão.</small>
+                <small>Faixa base: R$ 500 a R$ 2.000</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="tipo_site" value="institucional">
+              <span class="choice-body">
+                <span class="choice-title">Institucional</span>
+                <small>Site para apresentar empresa, serviços, autoridade e canais de contato.</small>
+                <small>Faixa base: R$ 1.500 a R$ 5.000</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="tipo_site" value="ecommerce">
+              <span class="choice-body">
+                <span class="choice-title">E-commerce</span>
+                <small>Loja virtual com catálogo, checkout, pagamentos e regras comerciais.</small>
+                <small>Faixa base: R$ 3.000 a R$ 15.000+</small>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="status-note">
+          Acompanhe o card de estimativa para ver a faixa de preço sendo atualizada e tudo o que está entrando no cálculo.
+        </div>
+      </div>
+      <div class="form-section">
+        <h2>6. Estilo e referências</h2>
+        <p>O item "Possui" continua com checkbox e agora faz parte da lógica condicional da tela.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>Você já tem identidade visual?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="identidade" value="sim">
+              <span class="choice-body">
+                <span class="choice-title">Sim</span>
+                <small>Já existe algum material visual do projeto.</small>
+              </span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="identidade" value="nao">
+              <span class="choice-body">
+                <span class="choice-title">Não</span>
+                <small>A identidade ainda precisa ser criada ou refinada.</small>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="conditional" id="identidade_assets_field">
+          <fieldset class="form-group group-reset">
+            <legend>Possui:</legend>
+            <div class="choices">
+              <label class="choice">
+                <input type="checkbox" name="possui[]" value="logo" disabled>
+                <span class="choice-body">
+                  <span class="choice-title">Logo</span>
+                </span>
+              </label>
+
+              <label class="choice">
+                <input type="checkbox" name="possui[]" value="cores" disabled>
+                <span class="choice-body">
+                  <span class="choice-title">Cores definidas</span>
+                </span>
+              </label>
+
+              <label class="choice">
+                <input type="checkbox" name="possui[]" value="tipografia" disabled>
+                <span class="choice-body">
+                  <span class="choice-title">Tipografia definida</span>
+                </span>
+              </label>
+
+              <label class="choice">
+                <input type="checkbox" name="possui[]" value="manual" disabled>
+                <span class="choice-body">
+                  <span class="choice-title">Manual de marca</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="status-note" id="identidade_status">Se você ainda não tem identidade visual, o cálculo considera essa necessidade como parte do escopo.</div>
+
+        <div class="form-group">
+          <label class="label-links-referencia" for="exemplos">Links de referência</label>
+          <textarea
+            class="text-field"
+            id="exemplos"
+            name="exemplos"
+            rows="4"
+            placeholder="Cole links de sites, marcas, perfis ou referências visuais."
+          ></textarea>
+        </div>
+
+        <fieldset class="form-group group-reset">
+          <legend>Estilo desejado</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="checkbox" name="estilo[]" value="simples">
+              <span class="choice-body"><span class="choice-title">Simples</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="estilo[]" value="moderno">
+              <span class="choice-body"><span class="choice-title">Moderno</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="estilo[]" value="premium">
+              <span class="choice-body"><span class="choice-title">Premium</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="estilo[]" value="minimalista">
+              <span class="choice-body"><span class="choice-title">Minimalista</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="estilo[]" value="chamativo">
+              <span class="choice-body"><span class="choice-title">Chamativo</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="estilo[]" value="sofisticado">
+              <span class="choice-body"><span class="choice-title">Sofisticado</span></span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-section">
+        <h2>7. Páginas e funcionalidades</h2>
+        <p>Marque apenas o que realmente faz parte do escopo. Isso deixa a estimativa mais próxima do projeto real.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>Quais páginas você precisa? *</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="checkbox" name="paginas[]" value="home">
+              <span class="choice-body"><span class="choice-title">Home</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="paginas[]" value="sobre">
+              <span class="choice-body"><span class="choice-title">Sobre</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="paginas[]" value="servicos">
+              <span class="choice-body"><span class="choice-title">Serviços</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="paginas[]" value="catalogo">
+              <span class="choice-body"><span class="choice-title">Catálogo / Loja</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="paginas[]" value="blog">
+              <span class="choice-body"><span class="choice-title">Blog</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="paginas[]" value="contato">
+              <span class="choice-body"><span class="choice-title">Contato</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" id="outra_pag_toggle" name="paginas[]" value="outra">
+              <span class="choice-body">
+                <span class="choice-title">Outra página</span>
+                <small>Página fora da estrutura padrão.</small>
+              </span>
+            </label>
+          </div>
+
+          <div class="conditional" id="outra_pag_field">
+            <label for="outra_pag_text">Qual é a outra página?</label>
+            <input
+              class="text-field"
+              type="text"
+              id="outra_pag_text"
+              name="outra_pag_text"
+              placeholder="Ex.: FAQ, depoimentos, área do aluno"
+              disabled
+            >
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group group-reset">
+          <legend class="legend-funcionalidades">Funcionalidades</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="form_contato">
+              <span class="choice-body"><span class="choice-title">Formulário de contato</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="whatsapp">
+              <span class="choice-body"><span class="choice-title">Integração com WhatsApp</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="login">
+              <span class="choice-body"><span class="choice-title">Área de login</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="agendamento">
+              <span class="choice-body"><span class="choice-title">Sistema de agendamento</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="catalogo_produtos">
+              <span class="choice-body"><span class="choice-title">Catálogo de produtos</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="checkout">
+              <span class="choice-body"><span class="choice-title">Carrinho e checkout</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="pagamento_online">
+              <span class="choice-body"><span class="choice-title">Pagamento online</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="frete">
+              <span class="choice-body"><span class="choice-title">Cálculo de frete</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="painel">
+              <span class="choice-body"><span class="choice-title">Painel de gestão</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="blog">
+              <span class="choice-body"><span class="choice-title">Blog</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="funcionalidades[]" value="redes_sociais">
+              <span class="choice-body"><span class="choice-title">Integração com redes sociais</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" id="outra_funcionalidade_toggle" name="funcionalidades[]" value="outra">
+              <span class="choice-body"><span class="choice-title">Outra funcionalidade</span></span>
+            </label>
+          </div>
+
+          <div class="conditional" id="outra_funcionalidade_field">
+            <label for="outra_funcionalidade_text">Qual funcionalidade extra você precisa?</label>
+            <input
+              class="text-field"
+              type="text"
+              id="outra_funcionalidade_text"
+              name="outra_funcionalidade_text"
+              placeholder="Ex.: chatbot, área do cliente, integração com ERP"
+              disabled
+            >
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-section">
+        <h2>8. Orçamento e prazo</h2>
+        <p>Essas respostas ajudam a calibrar prioridade, escopo e aderência à faixa de mercado.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>Qual o orçamento estimado disponível? *</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="orcamento" value="ate_1000">
+              <span class="choice-body"><span class="choice-title">Até R$ 1.000</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="orcamento" value="1000_2500">
+              <span class="choice-body"><span class="choice-title">R$ 1.000 a R$ 2.500</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="orcamento" value="2500_5000">
+              <span class="choice-body"><span class="choice-title">R$ 2.500 a R$ 5.000</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="orcamento" value="5000_10000">
+              <span class="choice-body"><span class="choice-title">R$ 5.000 a R$ 10.000</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="orcamento" value="10000_20000">
+              <span class="choice-body"><span class="choice-title">R$ 10.000 a R$ 20.000</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="orcamento" value="20000_plus">
+              <span class="choice-body"><span class="choice-title">R$ 20.000+</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group group-reset">
+          <legend>Prazo desejado *</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="prazo" value="urgente">
+              <span class="choice-body">
+                <span class="choice-title">Urgente</span>
+                <small>Entrega acelerada com esforço extra.</small>
+              </span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="prazo" value="15_dias">
+              <span class="choice-body"><span class="choice-title">Até 15 dias</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="prazo" value="30_dias_plus">
+              <span class="choice-body"><span class="choice-title">30 dias ou mais</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="prazo" value="a_determinar_dev">
+              <span class="choice-body"><span class="choice-title">A determinar com o Dev</span></span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-section">
+        <h2>9. Conteúdo</h2>
+        <p>Esse bloco também passou a trabalhar melhor com múltiplas escolhas. Você pode já ter parte do conteúdo e precisar de ajuda com o restante.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>O que você já possui?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="checkbox" name="conteudo[]" value="textos">
+              <span class="choice-body"><span class="choice-title">Textos prontos</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="conteudo[]" value="imagens">
+              <span class="choice-body"><span class="choice-title">Imagens</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="conteudo[]" value="videos">
+              <span class="choice-body"><span class="choice-title">Vídeos</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group group-reset">
+          <legend>O que você precisa que eu crie?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="checkbox" name="conteudo_criar[]" value="textos">
+              <span class="choice-body"><span class="choice-title">Copy e textos</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="conteudo_criar[]" value="imagens">
+              <span class="choice-body"><span class="choice-title">Curadoria ou tratamento de imagens</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="conteudo_criar[]" value="videos">
+              <span class="choice-body"><span class="choice-title">Edição ou seleção de vídeos</span></span>
+            </label>
+            <label class="choice">
+              <input type="checkbox" name="conteudo_criar[]" value="estrutura">
+              <span class="choice-body"><span class="choice-title">Estrutura de conteúdo</span></span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-section">
+        <h2>10. Detalhes técnicos</h2>
+        <p>Essas respostas ajudam a definir setup inicial e possíveis extras de infraestrutura.</p>
+
+        <fieldset class="form-group group-reset">
+          <legend>Já possui domínio?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="dominio" value="sim">
+              <span class="choice-body"><span class="choice-title">Sim</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="dominio" value="nao">
+              <span class="choice-body"><span class="choice-title">Não</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group group-reset">
+          <legend>Já possui hospedagem?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="hospedagem" value="sim">
+              <span class="choice-body"><span class="choice-title">Sim</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="hospedagem" value="nao">
+              <span class="choice-body"><span class="choice-title">Não</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group group-reset">
+          <legend>Precisa de manutenção contínua?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="manutencao" value="sim">
+              <span class="choice-body"><span class="choice-title">Sim</span></span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="manutencao" value="nao">
+              <span class="choice-body"><span class="choice-title">Não</span></span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-section">
+        <h2>11. Descrição livre</h2>
+        <p>Use esse espaço para explicar o cenário do projeto com suas próprias palavras.</p>
+
+        <div class="form-group">
+          <label for="descricao">Como você imagina esse site?</label>
+          <textarea
+            class="text-field"
+            id="descricao"
+            name="descricao"
+            rows="6"
+            placeholder="Conte o que já existe, o que não pode faltar e qualquer contexto importante."
+          ></textarea>
+        </div>
+      </div>
+      </div>
+
+      <button type="submit" class="btn-submit">Gerar resumo do orçamento</button>
+        </form>
+
+        <div class="feedback" id="form_feedback" role="status" aria-live="polite"></div>
+
+        <div class="summary" id="summary_panel" hidden>
+          <h2>Resumo pronto</h2>
+          <p>O briefing foi organizado. Você pode copiar, baixar em PDF ou abrir o WhatsApp Web com a mensagem pronta.</p>
+          <div class="summary-output" id="summary_output"></div>
+          <div class="actions">
+            <button type="button" class="btn-secondary" id="copy_summary_button">Copiar resumo</button>
+            <button type="button" class="btn-secondary" id="download_pdf_button">Baixar PDF</button>
+            <button type="button" class="btn-whatsapp" id="send_whatsapp_button">Abrir no WhatsApp Web</button>
+            <button type="button" class="btn-secondary" id="clear_form_button">Limpar formulário</button>
+          </div>
+        </div>
+
+        <div class="extra-note">
+          <strong>Quanto mais detalhado o briefing, mais precisa a proposta.</strong><br>
+          Esta tela foi revisada para aceitar múltiplas escolhas quando faz sentido e tratar melhor os condicionais do formulário.
+        </div>
+      </div>
+
+      <aside class="quote-sidebar" id="estimate_sidebar" data-mobile-open="false" aria-label="Estimativa ao vivo">
+        <button
+          type="button"
+          class="estimate-mobile-dock"
+          id="estimate_mobile_toggle"
+          aria-controls="estimate_card_panel"
+          aria-expanded="false"
+        >
+          <span class="estimate-mobile-dock-copy">
+            <span class="estimate-mobile-dock-kicker">Estimativa ao vivo</span>
+            <span class="estimate-mobile-dock-value" id="estimate_mobile_value">R$ 500 - R$ 2.000</span>
+          </span>
+          <span class="estimate-mobile-dock-side">
+            <span class="estimate-mobile-dock-type" id="estimate_mobile_type">Landing Page</span>
+            <span class="estimate-mobile-dock-action" id="estimate_mobile_action">Ver detalhes</span>
+          </span>
+        </button>
+
+        <button
+          type="button"
+          class="estimate-mobile-backdrop"
+          id="estimate_mobile_backdrop"
+          aria-label="Fechar estimativa"
+        ></button>
+
+        <div class="estimate-card" id="estimate_card_panel">
+          <div class="estimate-head">
+            <div>
+              <p class="estimate-kicker">Estimativa Ao Vivo</p>
+              <h2 class="estimate-title">Seu orçamento acompanha cada escolha</h2>
+            </div>
+            <button type="button" class="estimate-mobile-close" id="estimate_mobile_close">Fechar</button>
+          </div>
+          <p class="estimate-type" id="estimate_type_label">Estrutura atual: Landing Page</p>
+
+          <div class="price-box estimate-price-box">
+            <div class="price-result" id="orcamento_calculado" aria-live="polite">R$ 500 - R$ 2.000</div>
+            <div class="price-help" id="orcamento_detalhes">Selecione páginas, funcionalidades e prazo para refinar a estimativa.</div>
+            <div class="price-breakdown" id="orcamento_breakdown">Base de Landing Page considerada.</div>
+          </div>
+
+          <div class="estimate-badges" id="estimate_scope_badges"></div>
+
+          <div class="estimate-section">
+            <h3>O que está entrando no cálculo</h3>
+            <div class="estimate-list" id="estimate_items"></div>
+          </div>
+
+          <div class="estimate-footnote" id="estimate_footnote">
+            Marque páginas, conteúdo e funcionalidades para refinar a faixa.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="press-feedback.js"></script>
+  <script src="orcamento.js"></script>
+</body>
+</html>

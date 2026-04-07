@@ -1,0 +1,807 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ailton Snart</title>
+  <link rel="stylesheet" href="stylehome.css">
+</head>
+
+<body data-api-base-url="">
+  <header class="header">
+    <div class="nav-container">
+      <div class="logo">
+        <img class="logo-ailtonsnart" src="assets/images/logosnart.png" alt="Logo Ailton Snart">
+        <span class="logo-text"><span class="logo-word-ailton">Ailton</span><span class="logo-word-snart">Snart</span></span>
+      </div>
+      <button class="hamburger" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"
+        onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+      <div class="nav-overlay" id="navOverlay" onclick="closeSidebar()"></div>
+      <div class="nav-panel" id="sidebar">
+        <nav class="nav">
+          <button class="nav-item active" data-tab="home">Home</button>
+          <button class="nav-item" data-tab="projetos">Projetos</button>
+          <button class="nav-item" data-tab="tecnologias">Tecnologias</button>
+          <button class="nav-item" data-tab="servicos">Serviços</button>
+          <button class="nav-item" data-tab="valores">Valores</button>
+          <button class="nav-item" data-tab="sobre">Sobre</button>
+        </nav>
+        <a class="btn-contact" href="https://wa.me/5598970167795" target="_blank" rel="noreferrer">Entrar em Contato</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="tab-container">
+    <section class="tab active" id="home">
+      <section class="hero" id="hero">
+        <div class="hero-left">
+          <div class="profile-circle"><span class="profile-ring"></span><img src="assets/images/fotoailton.png"
+              alt="Ailton Pimentel Silva"></div>
+          <div class="hero-right">
+            <h2 class="tag">Desenvolvedor Web</h2>
+            <h1>Criação de Sites Profissionais<br>para Empresas</h1>
+            <p>Desenvolvo sites rápidos, modernos e feitos<br>para atrair clientes e gerar resultado real.</p>
+            <div class="buttons">
+              <button type="button" class="btn-outline" data-open-tab="projetos"><img class="icon-btn-outline"
+                  src="assets/icons/curriculo.svg" alt="Projetos">Ver Projetos</button>
+              <a class="btn-gradient" href="orcamento.html"><img
+                  class="icon-btn-gradient" src="assets/icons/orcamento.svg" alt="Orçamento">Solicitar
+                Orçamento</a>
+            </div>
+            <div class="stats">
+              <div><b>+20</b><span>Projetos</span></div>
+              <div><b>+5</b><span>Empresas atendidas</span></div>
+              <div><b>10 anos</b><span>de experiência</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="div-end">
+          <div class="social-curve">
+            <a class="social-item" href="https://wa.me/5598970167795" target="_blank" rel="noreferrer">
+              <img src="assets/icons/empresa.svg" alt="Empresa">
+              <span>Empresa</span>
+            </a>
+            <a class="social-item" href="https://github.com/ailtonsnart" target="_blank" rel="noreferrer">
+              <img src="assets/icons/github.svg" alt="GitHub">
+              <span>GitHub</span>
+            </a>
+            <a class="social-item" href="https://www.instagram.com/snart_dev?igsh=M2VubW0ycWlmancx" target="_blank" rel="noreferrer">
+              <img src="assets/icons/instagram.svg" alt="Instagram">
+              <span>Instagram</span>
+            </a>
+            <a class="social-item" href="https://youtube.com/ailtonsnart" target="_blank" rel="noreferrer">
+              <img src="assets/icons/youtube.svg" alt="YouTube">
+              <span>YouTube</span>
+            </a>
+          </div>
+          <div class="div-vertical"></div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="cta-container">
+          <img src="assets/images/mascote.png" class="mascote" id="mascote" alt="Mascote Ailton Snart">
+          <div class="cta-content">
+            <h1>Seu site está parado no tempo?</h1>
+            <p>Enquanto você lê isso, alguém está fechando clientes com um site mais rápido, mais bonito e mais
+              inteligente que o seu.</p>
+            <p>Eu não vendo site. Eu construo presença digital que gera resultado.</p>
+            <a class="cta-button" href="orcamento.html"><img src="assets/icons/orcamento.svg"
+                alt="Orçamento">Quero evoluir meu site</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-section">
+        <h2>Projetos em Destaque</h2>
+        <div class="projects-container">
+          <div class="project-card">
+            <div class="image"><img src="assets/images/fisioterapia.png" alt="Sistema de consultas médicas"></div>
+            <h3>Site para Fisioterapia e Reabilitação</h3>
+            <div class="tech-badges"><span class="badge">HTML</span><span class="badge">CSS</span><span
+                class="badge">JS</span><span class="badge">Node.js</span><span class="badge">PostgreSQL</span></div>
+            <button class="btn-project">Ver Projeto</button>
+          </div>
+          <div class="project-card">
+            <div class="image"><img src="assets/images/academia.png" alt="Sistema para academia"></div>
+            <h3>Sistema para Academia</h3>
+            <div class="tech-badges"><span class="badge">HTML</span><span class="badge">CSS</span><span
+                class="badge">JS</span><span class="badge">Node.js</span><span class="badge">PostgreSQL</span></div>
+            <button class="btn-project">Ver Projeto</button>
+          </div>
+          <div class="project-card">
+            <div class="image"><img src="assets/images/advocacia.png" alt="Sistema para advocacia"></div>
+            <h3>Sistema para Advocacia</h3>
+            <div class="tech-badges"><span class="badge">HTML</span><span class="badge">CSS</span><span
+                class="badge">JS</span><span class="badge">Node.js</span><span class="badge">PostgreSQL</span></div>
+            <button class="btn-project">Ver Projeto</button>
+          </div>
+          <div class="see-all"><button data-open-tab="projetos"> Ver Todos os projetos</button></div>
+        </div>
+      </section>
+
+      <section class="tech-3d">
+        <h2>Minhas Tecnologias</h2>
+        <div class="carousel">
+          <div class="carousel-track" onmouseenter="pauseCarousel()" onmouseleave="resumeCarousel()">
+            <div class="item html"><img src="assets/icons/html.svg" alt="HTML"><span>HTML</span></div>
+            <div class="item css"><img src="assets/icons/css.svg" alt="CSS"><span>CSS</span></div>
+            <div class="item js"><img src="assets/icons/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+            <div class="item node"><img src="assets/icons/node.svg" alt="Node.js"><span>Node.js</span></div>
+            <div class="item render"><img src="assets/icons/render.svg" alt="Render"><span>Render</span></div>
+            <div class="item postgres"><img src="assets/icons/postgres.svg" alt="PostgreSQL"><span>PostgreSQL</span>
+            </div>
+            <div class="item netlify"><img src="assets/icons/netlify.svg" alt="Netlify"><span>Netlify</span></div>
+          </div>
+        </div>
+        <div class="see-all-technologyes"><button class="btn-see-all" data-open-tab="tecnologias"><span>Ver Todas as Tecnologias</span>
+            <div class="btn-arrow">→</div>
+          </button></div>
+      </section>
+
+      <section class="sobre-mim">
+        <h2>Sobre Mim</h2>
+        <div class="sobre-container">
+          <div class="sobre-left">
+            <h1>Ailton Pimentel Silva</h1>
+            <h3>Apaixonado por Tecnologia</h3>
+            <h3>Desenvolvimento e criação de sistemas web</h3>
+            <p>Sou desenvolvedor focado em criar soluções digitais modernas, rápidas e eficientes. Transformo ideias em
+              sites profissionais que fortalecem marcas e ajudam empresas a vender mais.</p>
+            <p>Trabalho unindo design, performance e código para entregar produtos visualmente fortes, com boa navegação
+              e estrutura pensada para conversão.</p>
+            <div class="curriculo-container"><a class="btn-curriculo"
+                href="https://drive.google.com/file/d/1_2EpcYihimEy2DIG_-GB-RUG3XaI026n/view?usp=sharing"
+                target="_blank" rel="noreferrer"><img src="assets/icons/curriculo.svg"
+                  alt="Currículo"><span>Baixar Currículo</span></a></div>
+          </div>
+          <div class="sobre-right">
+            <div class="sobre-circle"><img src="assets/images/fotoailton.png" data-open-tab="sobre" alt="Ailton"></div>
+            <button type="button" class="btn-ver-mais" data-open-tab="sobre">Ver Mais Sobre Mim</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-review-section" id="avaliacao-site">
+        <div class="site-review-shell">
+          <div class="review-intro">
+            <span class="review-kicker">Avaliação do site</span>
+            <h2>Como foi a sua experiência navegando por aqui?</h2>
+            <p>Deixe uma nota de 1 a 5 estrelas e um comentário curto. Seu feedback ajuda a evoluir o visual, a clareza e a navegação do portfólio.</p>
+            <div class="review-stat-grid">
+              <div class="review-stat">
+                <span class="review-stat-label">Média atual</span>
+                <strong id="siteReviewAverage">0,0</strong>
+              </div>
+              <div class="review-stat">
+                <span class="review-stat-label">Avaliações</span>
+                <strong id="siteReviewCount">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-main">
+            <form class="review-form-card" id="siteReviewForm">
+              <div class="review-form-header">
+                <span class="review-form-kicker">Seu feedback</span>
+                <h3>Deixe sua avaliação</h3>
+              </div>
+
+              <label class="review-name-label" for="siteReviewName">Seu nome</label>
+              <input type="text" id="siteReviewName" class="review-input" name="authorName" maxlength="80"
+                autocomplete="name" required
+                placeholder="Como você quer aparecer na avaliação?">
+
+              <input type="hidden" id="siteReviewRating" name="rating" value="">
+
+              <div class="review-rating-block">
+                <p class="review-field-label">Sua nota</p>
+                <div class="review-star-row" id="siteReviewStarGroup" aria-label="Selecione uma nota de 1 a 5 estrelas">
+                  <button type="button" class="review-star" data-rating="1" aria-label="Dar 1 estrela">&#9733;</button>
+                  <button type="button" class="review-star" data-rating="2" aria-label="Dar 2 estrelas">&#9733;</button>
+                  <button type="button" class="review-star" data-rating="3" aria-label="Dar 3 estrelas">&#9733;</button>
+                  <button type="button" class="review-star" data-rating="4" aria-label="Dar 4 estrelas">&#9733;</button>
+                  <button type="button" class="review-star" data-rating="5" aria-label="Dar 5 estrelas">&#9733;</button>
+                </div>
+              </div>
+
+              <label class="review-comment-label" for="siteReviewComment">Comentário</label>
+              <textarea id="siteReviewComment" class="review-textarea" name="comment" rows="5" maxlength="280"
+                placeholder="O que te passou confiança, o que chamou atenção no visual ou o que você melhoraria?"></textarea>
+
+              <div class="review-form-footer">
+                <p class="review-helper">Uma avaliação rápida já ajuda bastante.</p>
+                <button type="submit" class="review-submit">Enviar avaliação</button>
+              </div>
+
+              <p class="review-feedback" id="siteReviewFeedback" aria-live="polite"></p>
+            </form>
+
+            <div class="review-list-panel">
+              <div class="review-list-header">
+                <span class="review-form-kicker">Comentários recentes</span>
+                <h3>Últimas avaliações enviadas</h3>
+              </div>
+              <div class="review-list" id="siteReviewList" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section id="valores" class="tab">
+      <div class="services-section">
+        <h2 class="services-title">Meus Valores</h2>
+        <div class="service-category">
+          <h3 class="category-title">Sites</h3>
+          <div class="service-cards">
+            <div class="service-card"><img class="service-icon" src="assets/images/sitesimples.png" alt="Landing page">
+              <h4>Landing Page</h4>
+              <p>Página focada em campanha, captação e conversão rápida.</p>
+              <ul>
+                <li>Estrutura enxuta e objetiva</li>
+                <li>Design responsivo</li>
+                <li>CTA, formulário ou WhatsApp</li>
+                <li>Base ideal para tráfego pago</li>
+              </ul>
+              <div class="price">R$ 500 - R$ 2.000</div><a class="btn-service" href="orcamento.html">Solicitar Orçamento</a>
+            </div>
+            <div class="service-card"><img class="service-icon" src="assets/images/sitepremium.png"
+                alt="Site institucional">
+              <h4>Institucional</h4>
+              <p>Site para apresentar marca, serviços e autoridade digital.</p>
+              <ul>
+                <li>Múltiplas páginas estratégicas</li>
+                <li>Conteúdo institucional e comercial</li>
+                <li>SEO básico e estrutura profissional</li>
+                <li>Integrações sob demanda</li>
+              </ul>
+              <div class="price">R$ 1.500 - R$ 5.000</div><a class="btn-service" href="orcamento.html">Solicitar Orçamento</a>
+            </div>
+            <div class="service-card premium"><img class="service-icon premium" src="assets/images/sitepremium.png"
+                alt="E-commerce">
+              <h4>E-commerce</h4>
+              <p>Loja virtual com catálogo, checkout e operação comercial online.</p>
+              <ul>
+                <li>Catálogo e páginas de produto</li>
+                <li>Carrinho, checkout e pagamentos</li>
+                <li>Integrações e regras de frete</li>
+                <li>Escopo sob medida para crescer</li>
+              </ul>
+              <div class="price">R$ 3.000 - R$ 15.000+</div><a class="btn-service" href="orcamento.html">Solicitar Orçamento</a>
+            </div>
+          </div>
+        </div>
+        <div class="service-category">
+          <h3 class="category-title">Apps Móveis</h3>
+          <div class="service-cards">
+            <div class="service-card"><img class="service-icon app-service-preview"
+                src="assets/images/appsimples.png" alt="App simples">
+              <h4>App Simples</h4>
+              <p>Aplicativo básico para Android e iOS.</p>
+              <ul>
+                <li>Até 5 telas</li>
+                <li>Fluxos principais definidos</li>
+                <li>Design adaptado para mobile</li>
+                <li>Publicação assistida</li>
+              </ul>
+              <div class="price">R$ 8.000 - R$ 15.000</div><a class="btn-service" href="orcamento.html">Solicitar Orçamento</a>
+            </div>
+            <div class="service-card premium"><img class="service-icon app-service-preview premium"
+                src="assets/images/apppremium.png" alt="App premium">
+              <h4>App Premium</h4>
+              <p>Aplicativo completo com backend e integrações.</p>
+              <ul>
+                <li>Mais de 5 telas</li>
+                <li>Backend dedicado</li>
+                <li>Push notifications</li>
+                <li>Escalabilidade e manutenção</li>
+              </ul>
+              <div class="price">R$ 20.000 - R$ 50.000+</div><a class="btn-service" href="orcamento.html">Solicitar Orçamento</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="tab">
+      <div class="about-section">
+        <h2 class="about-title">Sobre Mim</h2>
+        <div class="about-container">
+          <div class="about-image">
+            <div class="about-badge">
+              <div class="about-badge-top">
+                <span class="badge-kicker">Crachá digital</span>
+                <span class="badge-availability">Disponível para projetos</span>
+              </div>
+              <div class="about-badge-photo">
+                <span class="badge-ring"></span>
+                <img src="assets/images/fotoailton.png" alt="Ailton Pimentel Silva">
+              </div>
+              <div class="about-badge-body">
+                <p class="badge-label">Perfil profissional</p>
+                <h3>Ailton Pimentel Silva</h3>
+                <p class="badge-role">Desenvolvedor Web & Mobile</p>
+              </div>
+              <div class="about-badge-footer">
+                <span>UX/UI</span>
+                <span>Full-Stack</span>
+                <span>Performance</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-content">
+            <h1>Ailton Pimentel Silva</h1>
+            <h3>Desenvolvedor Web & Mobile | Designer UX/UI</h3>
+            <p>Sou apaixonado por tecnologia desde criança e construí minha carreira criando experiências digitais que
+              unem clareza visual, performance e resultado para negócios.</p>
+            <p>Como desenvolvedor full-stack, atuo em projetos web e mobile, entregando interfaces modernas, integrações
+              e soluções pensadas para crescer junto com a empresa.</p>
+            <p>Minha abordagem vai além do código: tecnologia boa precisa ser acessível, intuitiva e resolver problemas
+              concretos.</p>
+            <div class="about-stats">
+              <div class="stat">
+                <h4>10+</h4>
+                <p>Anos de experiência</p>
+              </div>
+              <div class="stat">
+                <h4>20+</h4>
+                <p>Projetos concluídos</p>
+              </div>
+              <div class="stat">
+                <h4>5+</h4>
+                <p>Empresas atendidas</p>
+              </div>
+            </div>
+            <div class="about-buttons"><a class="btn-primary"
+                href="https://drive.google.com/file/d/1_2EpcYihimEy2DIG_-GB-RUG3XaI026n/view?usp=sharing"
+                target="_blank" rel="noreferrer">Baixar Currículo</a></div>
+            <div class="social-links"><a href="https://wa.me/5598970167795" target="_blank" rel="noreferrer"
+                class="social-btn whatsapp"><img src="assets/icons/whatsapp.svg" alt="WhatsApp"> WhatsApp</a><a
+                href="https://www.instagram.com/snart_dev?igsh=M2VubW0ycWlmancx" target="_blank" rel="noreferrer"
+                class="social-btn instagram"><img src="assets/icons/instagram.svg" alt="Instagram"> Instagram</a><a
+                href="https://www.tiktok.com/@ailton.snart.dev?_r=1&_t=ZS-95HzFk19u7w" target="_blank" rel="noreferrer"
+                class="social-btn tiktok"><span class="social-emoji">♪</span> TikTok</a><a
+                href="https://www.youtube.com/channel/UCwai6FqlShOddP8z0cIz_Nw" target="_blank" rel="noreferrer"
+                class="social-btn youtube"><img src="assets/icons/youtube.svg" alt="YouTube"> YouTube</a></div>
+          </div>
+        </div>
+        <div class="journey-section">
+          <h3>Minha Jornada</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2014 - Início da Jornada</h4>
+                <p>Primeiros projetos com HTML e CSS, explorando interfaces e estruturação web.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2016 - Primeiro Trabalho</h4>
+                <p>Atuação profissional com foco em front-end e experiências visuais para clientes.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2018 - Expansão Full-Stack</h4>
+                <p>Aprofundamento em back-end, APIs e bancos de dados.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2020 - Mobile</h4>
+                <p>Entrada em apps multiplataforma com foco em experiências fluidas para celular.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2022 - Negócio Próprio</h4>
+                <p>Passo a oferecer soluções completas em desenvolvimento web e mobile.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Hoje</h4>
+                <p>Continuo evoluindo stack, design e processo para entregar projetos mais sólidos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos" class="tab">
+      <div class="services-section">
+        <h2 class="services-title">Meus Serviços</h2>
+        <div class="services-grid">
+          <div class="service-item">
+            <div class="service-icon"><img src="assets/icons/html.svg" alt="Sites"></div>
+            <h3>Desenvolvimento de Sites</h3>
+            <p>Sites institucionais, landing pages e estruturas focadas em conversão.</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon"><img src="assets/icons/flutter.svg" alt="Apps móveis"></div>
+            <h3>Apps Móveis</h3>
+            <p>Aplicativos híbridos para Android e iOS com boa experiência em telas menores.</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon"><img src="assets/icons/figma.svg" alt="UX UI"></div>
+            <h3>UX/UI Design</h3>
+            <p>Interfaces claras, acessíveis e alinhadas ao posicionamento da marca.</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon"><img src="assets/icons/canva.svg" alt="Canva"></div>
+            <h3>Designer Gráfico no Canva</h3>
+            <p>Criação de artes para posts, apresentações, banners e materiais visuais com foco em posicionamento de
+              marca.</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon"><img src="assets/icons/node.svg" alt="Backend"></div>
+            <h3>Desenvolvimento Backend</h3>
+            <p>APIs, integrações, banco de dados e regras de negócio para sustentar o produto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="tecnologias" class="tab">
+      <div class="tech-section">
+        <h2 class="tech-title">Tecnologias</h2>
+        <div class="tech-grid">
+          <div class="tech-category">
+            <h3 class="category-title">Frontend</h3>
+            <div class="tech-items">
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/html.svg" alt="HTML"></div>
+                <h4>HTML5</h4>
+                <p>Estrutura semântica e acessível.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 95%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/css.svg" alt="CSS"></div>
+                <h4>CSS3</h4>
+                <p>Layouts, animações e responsividade.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 92%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/javascript.svg" alt="JavaScript"></div>
+                <h4>JavaScript</h4>
+                <p>Interatividade e lógica da interface.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/react.svg" alt="React"></div>
+                <h4>React</h4>
+                <p>Componentização e aplicações reativas.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/figma.svg" alt="Figma"></div>
+                <h4>Figma</h4>
+                <p>Prototipação, UI e organização visual de interfaces.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 86%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3 class="category-title">Backend</h3>
+            <div class="tech-items">
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/node.svg" alt="Node.js"></div>
+                <h4>Node.js</h4>
+                <p>APIs REST e aplicações full-stack.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/express.svg" alt="Express"></div>
+                <h4>Express</h4>
+                <p>Rotas, middlewares e integração rápida.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/python.svg" alt="Python"></div>
+                <h4>Python</h4>
+                <p>Scripting, automações e serviços.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 82%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/django.svg" alt="Django"></div>
+                <h4>Django</h4>
+                <p>Aplicações seguras e produtivas.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3 class="category-title">Deploy & Ferramentas</h3>
+            <div class="tech-items">
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/postgres.svg" alt="PostgreSQL"></div>
+                <h4>PostgreSQL</h4>
+                <p>Banco relacional para sistemas robustos.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/docker.svg" alt="Docker"></div>
+                <h4>Docker</h4>
+                <p>Ambientes reproduzíveis e deploy consistente.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 72%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/netlify.svg" alt="Netlify"></div>
+                <h4>Netlify</h4>
+                <p>Publicação rápida para front-end.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon"><img src="assets/icons/git.svg" alt="Git"></div>
+                <h4>Git</h4>
+                <p>Versionamento e fluxo de trabalho organizado.</p>
+                <div class="tech-level">
+                  <div class="level-bar" style="width: 95%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tech-stats">
+          <div class="stat-item">
+            <h3>14</h3>
+            <p>Ferramentas</p>
+          </div>
+          <div class="stat-item">
+            <h3>6</h3>
+            <p>Stacks principais</p>
+          </div>
+          <div class="stat-item">
+            <h3>10</h3>
+            <p>Anos de experiência</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="tab">
+      <h2 class="section-title">Web Sites</h2>
+      <div class="websites">
+        <div class="website-card">
+          <div class="div-stack">
+            <div class="project-gallery-stack website-stack">
+              <div class="book stack-book">
+                <div class="page"><img src="assets/images/fisio1.png" alt="Fisio 1"></div>
+                <div class="page"><img src="assets/images/fisio2.png" alt="Fisio 2"></div>
+                <div class="page"><img src="assets/images/fisio3.png" alt="Fisio 3"></div>
+                <div class="page"><img src="assets/images/fisio4.png" alt="Fisio 4"></div>
+                <div class="page"><img src="assets/images/fisio5.png" alt="Fisio 5"></div>
+                <div class="page"><img src="assets/images/fisio6.png" alt="Fisio 6"></div>
+                <div class="page"><img src="assets/images/fisio7.png" alt="Fisio 7"></div>
+              </div>
+              <button type="button" class="gallery-next stack-next" aria-label="Próxima imagem"><img
+                  src="assets/icons/arrowleft.svg" alt="Próxima"></button>
+              <button type="button" class="gallery-prev stack-prev" aria-label="Imagem anterior"><img
+                  src="assets/icons/arrowleft.svg" alt="Anterior"></button>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Site para Fisioterapia e Reabilitação</h3>
+            <div class="tech-badges"><span class="badge">HTML</span><span class="badge">CSS</span><span
+                class="badge">JS</span><span class="badge">Node.js</span><span class="badge">PostgreSQL</span></div>
+            <p class="desc">Sistema feito para clínicas de fisioterapia e reabilitação com foco em usabilidade e eficiência.</p><button type="button" class="btn-github" data-github-url="https://github.com/ailtonsnart">Ver no GitHub</button>
+          </div>
+        </div>
+        <div class="website-card">
+          <div class="div-stack">
+            <div class="project-gallery-stack website-stack">
+              <div class="book stack-book">
+                <div class="page"><img src="assets/images/siteacademiahome.png" alt="Academia home"></div>
+                <div class="page"><img src="assets/images/siteacademiasobre.png" alt="Academia sobre"></div>
+                <div class="page"><img src="assets/images/siteacademiaestrutura.png" alt="Academia estrutura"></div>
+                <div class="page"><img src="assets/images/siteacademiaalunos.png" alt="Academia alunos"></div>
+                <div class="page"><img src="assets/images/siteacademiaplanos.png" alt="Academia planos"></div>
+                <div class="page"><img src="assets/images/siteacademiacadastrar.png" alt="Academia cadastro"></div>
+              </div>
+              <button type="button" class="gallery-next stack-next" aria-label="Próxima imagem"><img
+                  src="assets/icons/arrowleft.svg" alt="Próxima"></button>
+              <button type="button" class="gallery-prev stack-prev" aria-label="Imagem anterior"><img
+                  src="assets/icons/arrowleft.svg" alt="Anterior"></button>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Sistema para Academia</h3>
+            <div class="tech-badges"><span class="badge">HTML</span><span class="badge">CSS</span><span
+                class="badge">JS</span><span class="badge">Node.js</span><span class="badge">PostgreSQL</span></div>
+            <p class="desc">Plataforma completa para gestão de academias, com controle de alunos, planos e
+              acompanhamento de progresso físico.</p><button type="button" class="btn-github" data-github-url="https://github.com/ailtonsnart">Ver no GitHub</button>
+          </div>
+        </div>
+        <div class="website-card">
+          <div class="div-stack">
+            <div class="project-gallery-stack website-stack">
+              <div class="book stack-book">
+                <div class="page"><img src="assets/images/advocacia1.png" alt="Advocacia 1"></div>
+                <div class="page"><img src="assets/images/advocacia2.png" alt="Advocacia 2"></div>
+                <div class="page"><img src="assets/images/advocacia3.png" alt="Advocacia 3"></div>
+                <div class="page"><img src="assets/images/advocacia4.png" alt="Advocacia 4"></div>
+                <div class="page"><img src="assets/images/advocacia5.png" alt="Advocacia 5"></div>
+              </div>
+              <button type="button" class="gallery-next stack-next" aria-label="Próxima imagem"><img
+                  src="assets/icons/arrowleft.svg" alt="Próxima"></button>
+              <button type="button" class="gallery-prev stack-prev" aria-label="Imagem anterior"><img
+                  src="assets/icons/arrowleft.svg" alt="Anterior"></button>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Sistema para Advocacia</h3>
+            <div class="tech-badges"><span class="badge">HTML</span><span class="badge">CSS</span><span
+                class="badge">JS</span><span class="badge">Node.js</span><span class="badge">PostgreSQL</span></div>
+            <p class="desc">Sistema jurídico com foco em organização de processos, clientes e rotinas operacionais do
+              escritório.</p><button type="button" class="btn-github" data-github-url="https://github.com/ailtonsnart">Ver no GitHub</button>
+          </div>
+        </div>
+        <div class="website-card">
+          <div class="div-stack">
+            <div class="project-gallery-stack website-stack">
+              <div class="book stack-book">
+                <div class="page"><img src="assets/images/barbearia1.png" alt="Barbearia 1"></div>
+                <div class="page"><img src="assets/images/barbearia2.png" alt="Barbearia 2"></div>
+                <div class="page"><img src="assets/images/barbearia3.png" alt="Barbearia 3"></div>
+                <div class="page"><img src="assets/images/barbearia4.png" alt="Barbearia 4"></div>
+                <div class="page"><img src="assets/images/barbearia5.png" alt="Barbearia 5"></div>
+              </div>
+              <button type="button" class="gallery-next stack-next" aria-label="Próxima imagem"><img
+                  src="assets/icons/arrowleft.svg" alt="Próxima"></button>
+              <button type="button" class="gallery-prev stack-prev" aria-label="Imagem anterior"><img
+                  src="assets/icons/arrowleft.svg" alt="Anterior"></button>
+            </div>
+          </div>
+          <div class="info">
+            <h3>Site para Barbearias</h3>
+            <div class="tech-badges">
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+              <span class="badge">JS</span>
+              <span class="badge">Node.js</span>
+              <span class="badge">PostgreSQL</span>
+            </div>
+            <p class="desc">Sistema para gerenciamento de barbearias e agendamento de serviços.</p>
+            <button type="button" class="btn-github" data-github-url="https://github.com/ailtonsnart">Ver no GitHub</button>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Apps Mobile - Frontend</h2>
+      <div class="apps">
+        <div class="apps-container">
+          <div class="app-card">
+            <div class="stack-area">
+              <div class="project-gallery-stack app-stack">
+                <div class="book stack-book">
+                  <div class="page"><img src="assets/images/appanimelogin.png" alt="App anime login"></div>
+                  <div class="page"><img src="assets/images/appanimeregister1.png" alt="App anime registro"></div>
+                  <div class="page"><img src="assets/images/appanimehome1.png" alt="App anime home"></div>
+                  <div class="page"><img src="assets/images/appanimeprofile1.png" alt="App anime perfil"></div>
+                </div><button type="button" class="gallery-next stack-next" aria-label="Próxima imagem"><img
+                    src="assets/icons/arrowleft.svg" alt="Próxima"></button><button type="button"
+                  class="gallery-prev stack-prev" aria-label="Imagem anterior"><img src="assets/icons/arrowleft.svg"
+                    alt="Anterior"></button>
+              </div>
+            </div>
+            <div class="info-app">
+              <h3>App de treino inspirado em animes</h3>
+              <div class="tech-badges"><span class="badge">Flutter</span><span class="badge">Dart</span></div>
+              <p class="desc-app">Aplicativo mobile focado em treinos gamificados com estética anime.</p><button
+                type="button" class="btn-github-app" data-github-url="https://github.com/ailtonsnart">Ver no GitHub</button>
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="stack-area">
+              <div class="project-gallery-stack app-stack">
+                <div class="book stack-book">
+                  <div class="page"><img src="assets/images/apppersonal1.png" alt="App personal 1"></div>
+                  <div class="page"><img src="assets/images/apppersonal4.png" alt="App personal 2"></div>
+                  <div class="page"><img src="assets/images/apppersonal8.png" alt="App personal 3"></div>
+                  <div class="page"><img src="assets/images/apppersonal12.png" alt="App personal 4"></div>
+                </div><button type="button" class="gallery-next stack-next" aria-label="Próxima imagem"><img
+                    src="assets/icons/arrowleft.svg" alt="Próxima"></button><button type="button"
+                  class="gallery-prev stack-prev" aria-label="Imagem anterior"><img src="assets/icons/arrowleft.svg"
+                    alt="Anterior"></button>
+              </div>
+            </div>
+            <div class="info-app">
+              <h3>App para personal trainers</h3>
+              <div class="tech-badges"><span class="badge">Flutter</span><span class="badge">Dart</span></div>
+              <p class="desc-app">Sistema mobile para gestão de treinos, alunos e acompanhamento do progresso.</p>
+              <button type="button" class="btn-github-app" data-github-url="https://github.com/ailtonsnart">Ver no GitHub</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>Ailton Snart</h2>
+        <p>Desenvolvedor web criando experiências digitais modernas.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Links</h3><a href="#home" data-open-tab="home">Home</a><a href="#tecnologias" data-open-tab="tecnologias">Tecnologias</a><a href="#projetos" data-open-tab="projetos">Projetos</a><a
+          href="#sobre" data-open-tab="sobre">Sobre</a>
+      </div>
+      <div class="footer-contact">
+        <h3>Contato</h3>
+        <p>Email: snartdev2001@gmail.com</p>
+        <p>WhatsApp: (98) 97016-7795</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Ailton Snart - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <button type="button" class="floating-review-button" id="floatingReviewButton" data-open-tab="home"
+    data-scroll-target="avaliacao-site" aria-controls="avaliacao-site">
+    <span class="floating-review-icon" aria-hidden="true">&#9733;</span>
+    <span>Avaliar site</span>
+  </button>
+
+  <div id="projectModal" class="project-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Sistema de Consultas Médicas</h3><button class="close-modal"
+          onclick="closeProjectModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="project-gallery">
+          <div class="gallery-stack">
+            <div class="gallery-book" id="galleryBook"></div>
+            <button class="gallery-next" onclick="nextImage()"><img src="assets/icons/arrowleft.svg"
+                alt="Próxima"></button>
+            <button class="gallery-prev" onclick="prevImage()"><img src="assets/icons/arrowleft.svg"
+                alt="Anterior"></button>
+          </div>
+          <div class="gallery-info">
+            <div class="tech-badges" id="modalTechBadges"></div>
+            <p class="project-desc" id="modalDescription">Sistema completo para clínicas médicas, focado em agendamento,
+              gestão e experiência do usuário moderna.</p>
+            <div class="modal-actions"><button class="btn-github" onclick="openGitHub()">Ver no GitHub</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="press-feedback.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
