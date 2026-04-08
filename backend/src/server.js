@@ -8,7 +8,9 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: "*"
+  origin: "https://ailtonsnartsite.netlify.app",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
 }));
 
 app.use("/avaliacao", avaliacaoRoutes);
