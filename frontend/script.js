@@ -127,8 +127,8 @@ let currentProjectIndex = 0;
 let currentImageIndex = 0;
 let projectImages = [];
 let projectData = {};
-const DEFAULT_GITHUB_URL = 'https://github.com/ailtonsnart';
-const SITE_REVIEW_API_LOCAL_BASE_URL = 'https://backend-ailtonsnartsite.onrender.com';
+const DEFAULT_GITHUB_URL = 'https://github.com/ailtonsnartsite';
+const SITE_REVIEW_API_LOCAL_BASE_URL = 'https://portifolioailton-backend.onrender.com';
 const SITE_REVIEW_API_FALLBACK_BASE_URL = 'https://portifolioailton-backend.onrender.com';
 const MAX_VISIBLE_SITE_REVIEWS = 6;
 
